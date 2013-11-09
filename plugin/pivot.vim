@@ -80,8 +80,9 @@ endfunction
  " }}}
 
 if !hasmapto('<Plug>Pivot')
-    nnoremap <leader>p :call Pivot()<cr>
+    nnoremap <silent> <Plug>Pivot :call Pivot()<cr>
 endif
-map <silent> <unique> <script> <Plug>Pivot
+
+nmap <leader>p <Plug>Pivot
 
 let &cpo = s:save_cpo

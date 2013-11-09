@@ -1,7 +1,7 @@
 vim-pivot
 =========
 
-Let's you swap text elements around a pivot, eg (a,b) -> (b,a)
+Let's you swap text elements around a pivot, eg (a,b) -> (b,a). Still hella buggy.
 
 Use
 ---
