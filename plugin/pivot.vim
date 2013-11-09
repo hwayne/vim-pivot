@@ -84,4 +84,4 @@ if !hasmapto('<Plug>Pivot')
 endif
 map <silent> <unique> <script> <Plug>Pivot
 
-set &cpo = s:save_cpo
+let &cpo = s:save_cpo
