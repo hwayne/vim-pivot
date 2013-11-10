@@ -8,15 +8,15 @@ Use
 
 Pivot maps to <leader>p. Currently it works with w, W, $, and braces. It takes the first element in front of the cursor and the first element behind and swaps them. For example:
 
-* ,pw will map f(a,b) -> f(b,a) if the cursor is over the ','
-* ,pw will map @a = var\_1 -> @var\_1 = a if the cursor is over the '='
-* ,pW will map @a = var\_1 -> var\_1 = @a if the cursor is over the '='
-* ,p$ will map a + b = c + d -> c + d = a + b if the cursor is over '='
+* ,pw will map _f(a,b)_ -> _f(b,a)_ if the cursor is over the ','
+* ,pw will map _@a = var\_1_ -> _@var\_1 = a_ if the cursor is over the '='
+* ,pW will map _@a = var\_1_ -> _var\_1 = @a_ if the cursor is over the '='
+* ,p$ will map _a + b = c + d_ -> _c + d = a + b_ if the cursor is over '='
 
 Braces work a little differently. They pivot everything inside the braces, and they'll account for nesting. For example:
 
-* ,p) will map [a,b+c] -> [b+c,a] if cursor is over ','
-* ,p] will map f(a,g(b+c)) -> f(g(b+c),a) if cursor is over ','. It skips the first set of parenthesis as nested.
+* ,p) will map _[a,b+c]_ -> _[b+c,a]_ if cursor is over ','
+* ,p] will map _f(a,g(b+c))_ -> _f(g(b+c),a)_ if cursor is over ','. It skips the first set of parenthesis as nested.
 
 TODO
 ----
