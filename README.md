@@ -9,8 +9,8 @@ Use
 Pivot maps to <leader>p. Currently it works with w, W, $, and braces. It takes the first element in front of the cursor and the first element behind and swaps them. For example:
 
 * ,pw will map _f(a,b)_ -> _f(b,a)_ if the cursor is over the ','
-* ,pw will map _@a = var\_1_ -> _@var\_1 = a_ if the cursor is over the '='
-* ,pW will map _@a = var\_1_ -> _var\_1 = @a_ if the cursor is over the '='
+* ,pw will map _@a = var1_ -> _@var1 = a_ if the cursor is over the '='
+* ,pW will map _@a = var1_ -> _var1 = @a_ if the cursor is over the '='
 * ,p$ will map _a + b = c + d_ -> _c + d = a + b_ if the cursor is over '='
 
 Braces work a little differently. They pivot everything inside the braces, and they'll account for nesting. For example:
