@@ -67,20 +67,23 @@ function! Pivot()
 
  "startup: save a bunch of the buffers we're going to be using
  if getreg('a') != "" | let swap_register_1 = @a | endif
- if getreg('a') != "" | let swap_register_2 = @b | endif
+ if getreg('b') != "" | let swap_register_2 = @b | endif
  let save_mark = getpos("'a")
  let back_mark = getpos("'b")
  let s:valid_chars  = {'w': 'w', 'b': 'w', 'e': 'w', 'ge': 'w', 'W': 'W', 'B': 'W', 'E': 'W',
              \ '$': '$', '^': '$', 'L': '$', 'H': '$', 'p': '$',
              \ '[': ']', ']': ']', '(': ')', ')': ')', '{': '}', '}': '}', '<': '>', '>': '>'}
-
-
- execute "normal! ma"
  
  let s:bknd = get(s:valid_chars, s:getchar(), "")
  if s:bknd == ""
      return
  endif
+
+ "markings setup
+ execute "normal! ma"
+ let s:pivotmark = ""| "hack to enable returning to pivot. Should be changed to relative marks those exist.
+ let s:pivot = getline('.')[col('.')-1]| "To replace with . I pray nobody puts a bell in their code.
+ execute "normal! r".s:pivotmark
 
  if "w" ==? s:bknd
      execute "normal! bmb\"ayi".s:bknd."`a"| "go back, mark, yank work, return
@@ -109,6 +112,9 @@ function! Pivot()
      call setpos("'z", save_rparen_mark)
  endif
  
+ "return to pivotmark, replace with pivot
+ execute 'normal! ^f'.s:pivotmark.'r'.s:pivot|"^f will ALWAYS jump to pivotmark, f can fail in some cases
+
  "cleanup: reset all of the buffers and marks to their original values
  let @a = swap_register_1 
  let @b = swap_register_2

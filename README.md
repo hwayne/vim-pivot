@@ -23,7 +23,7 @@ TODO
 
 * Write a comprehensive docfile
 * Fix whitespace issues with pivoting in braces
-* Make cursor return to pivot after pivoting
+* Make cursor return to pivot after pivoting without using a weird control character hack
 * Add support for numbers, so ,p2w will pivot two words
 * Add more mappings
 * Fix more corner cases
