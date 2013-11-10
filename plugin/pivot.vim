@@ -44,29 +44,30 @@ endfunction
 function! Pivot()
 
  "startup: save a bunch of the buffers we're going to be using
- let swap_register_1 = @a
- let swap_register_2 = @b
+ if getreg('a') != "" | let swap_register_1 = @a | endif
+ if getreg('a') != "" | let swap_register_2 = @b | endif
  let save_mark = getpos("'a")
  let back_mark = getpos("'b")
- let pairdict_nested = {'(': ')', '{': '}', '[': ']', '<': '>', ')': '(', '}': '{', ']': '[', '>': '<'}
- let pairdict = {'w': 'b', 'W': 'B', 'b': 'w', 'B': 'W'}
+ let s:valid_chars  = {'w': 'w', 'b': 'w', 'e': 'w', 'ge': 'w', 'W': 'W', 'B': 'W', 'E': 'W',
+             \ '$': '$', '^': '$', 'L': '$', 'H': '$'}
+
  execute "normal! ma"
  
- 
- let s:bknd = s:inputtarget()
+ let s:bknd = get(s:valid_chars, s:getchar(), "")
+ if s:bknd == ""
+     return
+ endif
+
  let front_spaces = 0
  let rear_spaces   = 0
- if 1| "bknd ==# "W"
-     while getline('.')[col('.')+front_spaces] == " "
-         let front_spaces += 1
-     endwhile
-     while getline('.')[col('.')-rear_spaces] == " "
-         let rear_spaces += 1
-     endwhile
+ if "w" ==? s:bknd
      execute "normal! bmb\"ayi".s:bknd."`a"| "go back, mark, yank work, return
      execute "normal! w\"bdi".s:bknd."\"aP`b"| "go forward, replace word, jump to previous
      execute "normal! \"adi".s:bknd."\"bP`a"| "replace word, return
-    
+ elseif "$" ==? s:bknd
+     execute "normal! gelmb\"ay^`a"| "grab first half of line, move one ahead to get ^ right
+     execute "normal! w\"bd$\"aP`b"| "replace end with beginning
+     execute 'normal! "ad^"bP`a'| "replace beginning
      
  endif
  
