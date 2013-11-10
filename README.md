@@ -1,12 +1,12 @@
 vim-pivot
 =========
 
-Let's you swap text elements around a pivot, eg (a,b) -> (b,a). Still hella buggy.
+Lets you swap text elements around a pivot, eg (a,b) -> (b,a). Still hella buggy.
 
 Use
 ---
 
-Pivot maps to <leader>p. Currently it works with w, W, $, and braces. It takes the first element in front of the cursor and the first element behind and swaps them. For example:
+Pivot maps to <leader>p. Currently it works with w, W, $, and braces. It takes the first element in front of the cursor and the first element behind and swaps them. For example, assuming <leader> is ',':
 
 * ,pw will map _f(a,b)_ -> _f(b,a)_ if the cursor is over the ','
 * ,pw will map _@a = var1_ -> _@var1 = a_ if the cursor is over the '='

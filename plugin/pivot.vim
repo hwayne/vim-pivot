@@ -66,8 +66,8 @@ endfunction
 function! Pivot()
 
  "startup: save a bunch of the buffers we're going to be using
- if getreg('a') != "" | let swap_register_1 = @a | endif
- if getreg('b') != "" | let swap_register_2 = @b | endif
+ let swap_register_1 = @a
+ let swap_register_2 = @b
  let save_mark = getpos("'a")
  let back_mark = getpos("'b")
  let s:valid_chars  = {'w': 'w', 'b': 'w', 'e': 'w', 'ge': 'w', 'W': 'W', 'B': 'W', 'E': 'W',
